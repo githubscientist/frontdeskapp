@@ -12,3 +12,10 @@ This is the backend for the Front Desk Application. It is a RESTful API that all
 - Roles: Admin, Manager, Receptionist
 - Authentication using JWT
 - Authorization using roles
+
+### Setup
+
+- [x] Setting up NPM application
+- [x] Setting up Git repository
+- [x] Express server setup
+- [ ] MongoDB setup

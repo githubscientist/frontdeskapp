@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/githubscientist/frontdeskapp/issues"
   },
-  "homepage": "https://github.com/githubscientist/frontdeskapp#readme"
+  "homepage": "https://github.com/githubscientist/frontdeskapp#readme",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
 }
