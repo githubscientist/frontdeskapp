@@ -64,6 +64,30 @@ const authController = {
         } catch (error) {
             response.status(500).json({ message: error.message });
         }
+    },
+    logout: async (request, response) => {
+        try {
+            // clear the cookie
+            response.clearCookie('token');
+
+            // send a response
+            response.status(200).json({ message: 'Logout successful' });
+        } catch (error) {
+            response.status(500).json({ message: error.message });
+        }
+    },
+    me: async (request, response) => {
+        try {
+            const userId = request.userId;
+
+            // find the user with the id
+            const user = await User.findById(userId).select('-password -__v');
+
+            // send a response
+            response.status(200).json({ user });
+        } catch (error) {
+            response.status(500).json({ message: error.message });
+        }
     }
 }
 
