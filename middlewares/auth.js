@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const { SECRET_KEY } = require('../utils/config');
+const User = require('../models/User');
 
 const auth = {
     // Middleware to check if the user is authenticated
@@ -22,6 +23,25 @@ const auth = {
             next();
         } catch (error) {
             response.status(500).json({ message: error.message });
+        }
+    },
+
+    // Middleware to allow roles passed as an argument
+    allowRoles: (roles) => {
+        return async (request, response, next) => {
+            // get the userId from the request object
+            const userId = request.userId;
+
+            // get the user from the database
+            const user = await User.findById(userId);
+
+            // check if the user has the role
+            if (!roles.includes(user.role)) {
+                return response.status(403).json({ message: 'Forbidden' });
+            }
+
+            // Continue with the request
+            next();
         }
     }
 }
